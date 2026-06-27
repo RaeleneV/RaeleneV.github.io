@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Projects — Raelene Valeska Dookkoo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="nav-name">Raelene Valeska Dookkoo</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dropdown">
+        <a class="nav-dropdown-toggle active">Portfolio</a>
+        <div class="nav-dropdown-menu">
+          <a href="year1.html"><span class="menu-year">Year 1 · 2021</span><span class="menu-sub">Foundations</span></a>
+          <a href="year2.html"><span class="menu-year">Year 2 · 2022</span><span class="menu-sub">Creative &amp; Technical</span></a>
+          <a href="year3.html"><span class="menu-year">Year 3 · 2023</span><span class="menu-sub">Design &amp; Community</span></a>
+          <a href="year4.html"><span class="menu-year">Year 4 · 2024</span><span class="menu-sub">Informatics Transition</span></a>
+          <a href="year5.html"><span class="menu-year">Year 5 · 2025–2026</span><span class="menu-sub">Final Year</span></a>
+          <a href="personal.html"><span class="menu-year">Personal Projects</span><span class="menu-sub">Ongoing</span></a>
+        </div>
+      </li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="breadcrumb"><a href="index.html">Portfolio</a><span>›</span> Personal Projects</div>
+
+  <div class="year-banner" style="background:var(--accent);">
+    <div class="year-banner-inner">
+      <div class="year-banner-eyebrow" style="color:rgba(255,255,255,0.6);">Outside the curriculum</div>
+      <h1 style="color:white;">Personal<br><em style="color:rgba(255,255,255,0.75);">Projects</em></h1>
+      <p class="year-banner-desc" style="color:rgba(255,255,255,0.65);">Self-directed courses, experiments, and projects built purely out of curiosity or to develop skills beyond the university syllabus. This page grows over time — check the Kanban board for what's currently in progress.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Self-directed work</div>
+      <h2 class="section-title">Add your personal projects here.</h2>
+
+      <div style="background:var(--accent-light);border-left:3px solid var(--accent);padding:1rem 1.25rem;margin-bottom:2rem;font-size:0.88rem;color:var(--accent);border-radius:0 2px 2px 0;">
+        This page is ready for your personal work. Duplicate one of the card blocks below for each project you want to add. There's no fixed structure here — add whatever you've been building, learning, or experimenting with.
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- ==========================================
+             PERSONAL PROJECT TEMPLATE
+             Duplicate this block for each project
+             ========================================== -->
+        <div class="project-card">
+          <div class="card-media dark-bg" onclick="openLightbox('assets/videos/project1-demo.mp4', 'Project Title', 'Personal project · Year', true)">
+            <!-- VIDEO: <video src="assets/videos/project1-demo.mp4" muted loop playsinline></video> -->
+            <!-- IMAGE: <img src="assets/images/project1-screenshot.jpg" alt="Project name"> -->
+            <div class="media-placeholder">
+              <div class="media-placeholder-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4a8a72" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+              <div class="media-placeholder-label" style="color:#666;">Add your project media here</div>
+            </div>
+            <div class="media-overlay">
+              <button class="overlay-btn">▶ View project</button>
+              <!-- <a href="LIVE_URL" target="_blank" class="overlay-btn ghost" onclick="event.stopPropagation()">↗ Live site</a> -->
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-code">Personal</span>
+              <span style="font-size:11px;color:var(--ink-muted);">Year</span>
+            </div>
+            <!-- Replace with your project title -->
+            <div class="card-title">Your project title here</div>
+            <!-- Describe what you built and why -->
+            <div class="card-desc">Describe what this project is, why you built it, and what you learned from it. Was it a course? A personal experiment? Something you built for someone?</div>
+            <hr class="card-divider">
+            <div class="reflect-label">What I learned</div>
+            <!-- For personal projects, "what I'd improve" can become "what I learned" -->
+            <div class="reflect-text">"What did this project teach you? What would you do differently next time?"</div>
+            <div class="card-footer">
+              <!-- Add relevant skill tags -->
+              <span class="tag">Tag 1</span>
+              <span class="tag">Tag 2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more project cards here by duplicating the block above -->
+
+      </div>
+    </div>
+  </section>
+
+  <div style="display:flex;justify-content:space-between;padding:2rem;max-width:960px;margin:0 auto;">
+    <a href="year5.html" class="btn btn-secondary">← Year 5 · 2025–2026</a>
+    <a href="index.html#contact" class="btn btn-primary">Get in touch →</a>
+  </div>
+
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <div class="lightbox-box" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <div id="lightbox-media-wrap"></div>
+      <div class="lightbox-info"><h3 id="lightbox-title"></h3><p id="lightbox-subtitle"></p></div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Raelene Valeska Dookkoo</span>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/raelene-dookkoo" target="_blank">LinkedIn</a>
+      <a href="https://github.com/RaeleneV" target="_blank">GitHub</a>
+      <a href="mailto:raelenevdookkoo@gmail.com">Email</a>
+    </div>
+  </footer>
+  <script src="scripts.js"></script>
+</body>
+</html>
