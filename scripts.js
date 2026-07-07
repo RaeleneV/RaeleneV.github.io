@@ -53,7 +53,7 @@ const COLUMNS = [
 ];
 
 async function loadKanban() {
-  const TOKEN   = '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';
+  const TOKEN   = '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'; /*Need to fix with proxy*/
   const LOGIN   = 'RaeleneV';
   const PROJECT = 2;
 
