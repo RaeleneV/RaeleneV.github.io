@@ -53,7 +53,7 @@ const COLUMNS = [
 ];
 
 async function loadKanban() {
-  const PROXY = 'https://kanban-proxy-mmuri8d21-rvd1.vercel.app/api/kanban';
+  const PROXY = 'https://kanban-proxy.vercel.app/api/kanban';
 
   const query = `{
     user(login: "RaeleneV") {
