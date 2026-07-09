@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('kanban-board')) loadKanban();
 });
 
-/* ---- LIVE KANBAN — GITHUB PROJECTS ---- */
+/* ---- LIVE KANBAN — VIA VERCEL PROXY ---- */
 const COLUMNS = [
   { key: 'Todo',            emoji: '📥', label: 'To-Do'           },
   { key: 'In Progress',     emoji: '🔄', label: 'In Progress'     },
@@ -53,13 +53,11 @@ const COLUMNS = [
 ];
 
 async function loadKanban() {
-  const TOKEN   = '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'; /*Need to fix with proxy*/
-  const LOGIN   = 'RaeleneV';
-  const PROJECT = 2;
+  const PROXY = 'https://kanban-proxy-mmuri8d21-rvd1.vercel.app/api/kanban';
 
   const query = `{
-    user(login: "${LOGIN}") {
-      projectV2(number: ${PROJECT}) {
+    user(login: "RaeleneV") {
+      projectV2(number: 2) {
         items(first: 100) {
           nodes {
             fieldValues(first: 10) {
@@ -82,9 +80,9 @@ async function loadKanban() {
   }`;
 
   try {
-    const res = await fetch('https://api.github.com/graphql', {
+    const res = await fetch(PROXY, {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ query })
     });
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
