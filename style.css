@@ -1,5 +1,6 @@
 /* ============================================
    RAELENE VALESKA DOOKKOO — PORTFOLIO STYLES
+   Colour scheme: Teal · Maroon · Emerald
    RaeleneV.github.io
    ============================================ */
 
@@ -8,18 +9,35 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ink: #1a1a18;
-  --ink-mid: #4a4a46;
-  --ink-muted: #8a8a84;
-  --paper: #f7f5f0;
-  --paper-warm: #edeae2;
-  --accent: #2d5f4f;
-  --accent-light: #e8f0ed;
-  --accent-mid: #4a8a72;
-  --rule: #d4d0c8;
-  --white: #ffffff;
-  --dark: #1a1a18;
-  --dark-surface: #222220;
+  /* ── Core palette ── */
+  --teal:          #0a4a4a;   /* deep teal — primary brand */
+  --teal-mid:      #1a7a6e;   /* medium teal — hover states */
+  --teal-light:    #e0f0ee;   /* pale teal — backgrounds */
+  --teal-soft:     #c2e0dc;   /* soft teal — borders, accents */
+
+  --emerald:       #1a5c3a;   /* deep emerald — secondary accent */
+  --emerald-mid:   #2d8a5a;   /* medium emerald — badges, highlights */
+  --emerald-light: #e0f0e8;   /* pale emerald — tag backgrounds */
+
+  --maroon:        #6b1a1a;   /* deep maroon — distinction badges, highlights */
+  --maroon-mid:    #9b2f2f;   /* medium maroon — hover on maroon elements */
+  --maroon-light:  #f5e6e6;   /* pale maroon — in-progress backgrounds */
+
+  /* ── Neutrals ── */
+  --ink:           #1a1a18;   /* near-black text */
+  --ink-mid:       #3a3a36;   /* secondary text */
+  --ink-muted:     #7a7a72;   /* placeholder, labels */
+  --paper:         #f5f2ec;   /* warm off-white background */
+  --paper-warm:    #ece8e0;   /* slightly darker warm paper */
+  --rule:          #cdc9bf;   /* dividers */
+  --white:         #ffffff;
+
+  /* ── Semantic aliases (used throughout) ── */
+  --accent:        var(--teal);
+  --accent-mid:    var(--teal-mid);
+  --accent-light:  var(--teal-light);
+  --dark:          #0d2b2b;   /* very dark teal for banners */
+  --dark-surface:  #122222;
 }
 
 html { scroll-behavior: smooth; }
@@ -32,12 +50,14 @@ body {
   line-height: 1.7;
 }
 
-/* ---- NAV ---- */
+/* ============================================
+   NAV
+   ============================================ */
 nav {
   position: sticky;
   top: 0;
   background: var(--paper);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 2px solid var(--teal);
   z-index: 100;
   padding: 0 2rem;
   display: flex;
@@ -45,19 +65,18 @@ nav {
   align-items: center;
   height: 56px;
 }
+
 .nav-name {
   font-family: 'DM Serif Display', serif;
   font-size: 1.05rem;
-  color: var(--ink);
+  color: var(--teal);
   text-decoration: none;
+  letter-spacing: 0.01em;
 }
-.nav-links {
-  display: flex;
-  gap: 0;
-  list-style: none;
-  align-items: center;
-}
+
+.nav-links { display: flex; gap: 0; list-style: none; align-items: center; }
 .nav-links li { position: relative; }
+
 .nav-links a {
   font-size: 0.78rem;
   color: var(--ink-mid);
@@ -71,29 +90,28 @@ nav {
   align-items: center;
   transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--accent); }
-.nav-links a.active { color: var(--accent); }
+.nav-links a:hover { color: var(--teal); }
+.nav-links a.active { color: var(--teal); }
 
 /* Dropdown */
 .nav-dropdown { position: relative; }
-.nav-dropdown-toggle { cursor: pointer; gap: 4px; }
-.nav-dropdown-toggle::after {
-  content: '▾';
-  font-size: 10px;
-  margin-left: 2px;
-}
+.nav-dropdown-toggle { cursor: pointer; }
+.nav-dropdown-toggle::after { content: ' ▾'; font-size: 10px; }
+
 .nav-dropdown-menu {
   display: none;
   position: absolute;
   top: 56px;
   left: 0;
   background: var(--white);
-  border: 1px solid var(--rule);
-  border-top: 2px solid var(--accent);
+  border: 1px solid var(--teal-soft);
+  border-top: 2px solid var(--teal);
   min-width: 240px;
   z-index: 200;
+  box-shadow: 0 4px 16px rgba(10,74,74,0.1);
 }
 .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+
 .nav-dropdown-menu a {
   display: block;
   height: auto;
@@ -107,11 +125,31 @@ nav {
   transition: background 0.15s;
 }
 .nav-dropdown-menu a:last-child { border-bottom: none; }
-.nav-dropdown-menu a:hover { background: var(--paper-warm); color: var(--accent); }
-.nav-dropdown-menu .menu-year { font-weight: 500; color: var(--ink); }
+.nav-dropdown-menu a:hover { background: var(--teal-light); color: var(--teal); }
+.nav-dropdown-menu .menu-year { font-weight: 500; color: var(--ink); display: block; }
 .nav-dropdown-menu .menu-sub { font-size: 0.72rem; color: var(--ink-muted); display: block; margin-top: 1px; }
 
-/* ---- SECTION BASICS ---- */
+/* CV button in nav */
+.nav-cv {
+  color: var(--teal) !important;
+  font-weight: 500 !important;
+  border: 1px solid var(--teal) !important;
+  border-radius: 2px !important;
+  padding: 0 0.9rem !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin-left: 0.5rem !important;
+  transition: background 0.2s, color 0.2s !important;
+}
+.nav-cv:hover {
+  background: var(--teal) !important;
+  color: var(--white) !important;
+}
+
+/* ============================================
+   SECTION BASICS
+   ============================================ */
 section { padding: 4rem 2rem; }
 .section-inner { max-width: 960px; margin: 0 auto; }
 .section-alt { background: var(--paper-warm); }
@@ -121,7 +159,7 @@ section { padding: 4rem 2rem; }
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--teal-mid);
   font-weight: 500;
   margin-bottom: 0.6rem;
   display: flex;
@@ -132,11 +170,12 @@ section { padding: 4rem 2rem; }
   content: '';
   display: inline-block;
   width: 20px;
-  height: 1px;
-  background: var(--accent);
+  height: 2px;
+  background: var(--teal-mid);
+  border-radius: 1px;
 }
-.section-dark .section-label { color: var(--accent-mid); }
-.section-dark .section-label::before { background: var(--accent-mid); }
+.section-dark .section-label { color: var(--teal-soft); }
+.section-dark .section-label::before { background: var(--teal-soft); }
 
 .section-title {
   font-family: 'DM Serif Display', serif;
@@ -148,7 +187,9 @@ section { padding: 4rem 2rem; }
 }
 .section-dark .section-title { color: var(--paper); }
 
-/* ---- BUTTONS ---- */
+/* ============================================
+   BUTTONS
+   ============================================ */
 .btn {
   display: inline-block;
   padding: 0.65rem 1.4rem;
@@ -162,12 +203,28 @@ section { padding: 4rem 2rem; }
   cursor: pointer;
   border: none;
 }
-.btn-primary { background: var(--accent); color: var(--white); }
-.btn-primary:hover { background: #234d3f; }
-.btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--rule); }
-.btn-secondary:hover { border-color: var(--ink-mid); }
+.btn-primary {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--teal-mid); }
 
-/* ---- PROJECT CARDS ---- */
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+.btn-maroon {
+  background: var(--maroon);
+  color: var(--white);
+}
+.btn-maroon:hover { background: var(--maroon-mid); }
+
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -177,13 +234,17 @@ section { padding: 4rem 2rem; }
 .project-card {
   background: var(--white);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: 3px;
   overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
 }
-.project-card:hover { border-color: var(--accent-mid); transform: translateY(-2px); }
+.project-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(10,74,74,0.1);
+}
 
 /* Media area */
 .card-media {
@@ -193,7 +254,7 @@ section { padding: 4rem 2rem; }
   overflow: hidden;
   cursor: pointer;
 }
-.card-media.dark-bg { background: #2a2a28; }
+.card-media.dark-bg { background: var(--dark-surface); }
 
 .media-placeholder {
   width: 100%;
@@ -208,34 +269,25 @@ section { padding: 4rem 2rem; }
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--accent-light);
+  background: var(--teal-light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .dark-bg .media-placeholder-icon { background: rgba(255,255,255,0.08); }
 .media-placeholder-label { font-size: 11px; color: var(--ink-muted); }
-.dark-bg .media-placeholder-label { color: #666; }
+.dark-bg .media-placeholder-label { color: #555; }
 
-/* Actual media elements */
-.card-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
+.card-media img,
 .card-media video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
 }
 
-/* Hover overlay */
 .media-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(26,26,24,0);
+  background: rgba(10,74,74,0);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,12 +296,12 @@ section { padding: 4rem 2rem; }
   transition: all 0.2s;
 }
 .card-media:hover .media-overlay {
-  background: rgba(26,26,24,0.6);
+  background: rgba(10,74,74,0.65);
   opacity: 1;
 }
 .overlay-btn {
   background: var(--white);
-  color: var(--ink);
+  color: var(--teal);
   border: none;
   border-radius: 2px;
   padding: 6px 12px;
@@ -261,15 +313,22 @@ section { padding: 4rem 2rem; }
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  transition: background 0.15s;
 }
+.overlay-btn:hover { background: var(--teal-light); }
 .overlay-btn.ghost {
   background: transparent;
   color: var(--white);
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.6);
 }
 
 /* Card body */
-.card-body { padding: 1.1rem 1.25rem; flex: 1; display: flex; flex-direction: column; }
+.card-body {
+  padding: 1.1rem 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
 .card-top {
   display: flex;
   justify-content: space-between;
@@ -280,19 +339,22 @@ section { padding: 4rem 2rem; }
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--teal-mid);
   font-weight: 500;
 }
 .card-result {
   font-size: 11px;
   font-weight: 500;
-  color: var(--accent);
-  background: var(--accent-light);
+  color: var(--emerald);
+  background: var(--emerald-light);
   padding: 2px 8px;
   border-radius: 2px;
   white-space: nowrap;
 }
-.card-result.distinction { background: #fef3e2; color: #92400e; }
+.card-result.distinction {
+  background: var(--maroon-light);
+  color: var(--maroon);
+}
 .card-title {
   font-size: 0.92rem;
   font-weight: 500;
@@ -306,7 +368,11 @@ section { padding: 4rem 2rem; }
   line-height: 1.6;
   flex: 1;
 }
-.card-divider { border: none; border-top: 1px solid var(--rule); margin: 0.9rem 0; }
+.card-divider {
+  border: none;
+  border-top: 1px solid var(--teal-soft);
+  margin: 0.9rem 0;
+}
 
 .reflect-label {
   font-size: 10px;
@@ -324,7 +390,7 @@ section { padding: 4rem 2rem; }
   display: inline-block;
   width: 3px;
   height: 11px;
-  background: var(--accent);
+  background: var(--maroon);
   border-radius: 2px;
 }
 .reflect-text {
@@ -340,36 +406,48 @@ section { padding: 4rem 2rem; }
   flex-wrap: wrap;
   gap: 0.35rem;
 }
+
+/* Tags */
 .tag {
   font-size: 0.68rem;
-  background: var(--paper-warm);
-  color: var(--ink-mid);
+  background: var(--teal-light);
+  color: var(--teal);
   padding: 2px 7px;
   border-radius: 2px;
   font-weight: 500;
 }
-.tag-collab { background: var(--accent-light); color: var(--accent); }
-.tag-private { background: #f5f0ff; color: #5b21b6; }
+.tag-collab {
+  background: var(--emerald-light);
+  color: var(--emerald);
+}
+.tag-private {
+  background: var(--maroon-light);
+  color: var(--maroon);
+}
 
-/* ---- LIGHTBOX ---- */
+/* ============================================
+   LIGHTBOX
+   ============================================ */
 .lightbox-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(20,20,18,0.88);
+  background: rgba(10,30,30,0.9);
   z-index: 1000;
   align-items: center;
   justify-content: center;
   padding: 2rem;
 }
 .lightbox-overlay.open { display: flex; }
+
 .lightbox-box {
   background: var(--white);
-  border-radius: 2px;
+  border-radius: 3px;
   max-width: 800px;
   width: 100%;
   overflow: hidden;
   position: relative;
+  border-top: 3px solid var(--teal);
 }
 .lightbox-media {
   width: 100%;
@@ -378,16 +456,20 @@ section { padding: 4rem 2rem; }
   display: block;
   background: var(--paper-warm);
 }
-.lightbox-info { padding: 1rem 1.25rem; border-top: 1px solid var(--rule); }
+.lightbox-info {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--rule);
+}
 .lightbox-info h3 { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
-.lightbox-info p { font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px; }
+.lightbox-info p  { font-size: 0.8rem; color: var(--ink-muted); margin-top: 2px; }
+
 .lightbox-close {
   position: absolute;
   top: 12px;
   right: 12px;
   width: 32px;
   height: 32px;
-  background: rgba(0,0,0,0.5);
+  background: var(--teal);
   border: none;
   border-radius: 50%;
   color: white;
@@ -397,20 +479,26 @@ section { padding: 4rem 2rem; }
   align-items: center;
   justify-content: center;
   font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s;
 }
+.lightbox-close:hover { background: var(--teal-mid); }
 
-/* ---- YEAR INTRO BANNER ---- */
+/* ============================================
+   YEAR BANNER (top of year pages)
+   ============================================ */
 .year-banner {
   background: var(--dark);
   color: var(--paper);
   padding: 4rem 2rem;
+  border-bottom: 3px solid var(--teal-mid);
 }
 .year-banner-inner { max-width: 960px; margin: 0 auto; }
+
 .year-banner-eyebrow {
   font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent-mid);
+  color: var(--teal-soft);
   font-weight: 500;
   margin-bottom: 0.75rem;
   display: flex;
@@ -422,7 +510,7 @@ section { padding: 4rem 2rem; }
   display: inline-block;
   width: 20px;
   height: 1px;
-  background: var(--accent-mid);
+  background: var(--teal-soft);
 }
 .year-banner h1 {
   font-family: 'DM Serif Display', serif;
@@ -432,8 +520,13 @@ section { padding: 4rem 2rem; }
   margin-bottom: 1rem;
   color: var(--paper);
 }
-.year-banner h1 em { font-style: italic; color: var(--accent-mid); }
-.year-banner-desc { font-size: 0.95rem; color: #888780; max-width: 560px; line-height: 1.8; }
+.year-banner h1 em { font-style: italic; color: var(--teal-soft); }
+.year-banner-desc {
+  font-size: 0.95rem;
+  color: #7a9a98;
+  max-width: 560px;
+  line-height: 1.8;
+}
 .year-banner-stats {
   display: flex;
   gap: 2.5rem;
@@ -445,41 +538,125 @@ section { padding: 4rem 2rem; }
 .year-stat-num {
   font-family: 'DM Serif Display', serif;
   font-size: 1.8rem;
-  color: var(--paper);
+  color: var(--teal-soft);
   display: block;
   line-height: 1;
 }
-.year-stat-label { font-size: 0.72rem; color: #666; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.year-stat-label {
+  font-size: 0.72rem;
+  color: #5a7a78;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
 
-/* ---- BREADCRUMB ---- */
+/* ============================================
+   KANBAN BOARD
+   ============================================ */
+.kanban-col-head {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-mid);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--teal);
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.kanban-col-head .k-count {
+  background: var(--teal-light);
+  color: var(--teal);
+  border-radius: 10px;
+  padding: 1px 7px;
+  font-size: 0.65rem;
+}
+.k-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--teal-soft);
+  border-radius: 2px;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--ink-mid);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+  transition: border-color 0.15s;
+}
+.k-card:hover { border-left-color: var(--teal); }
+
+/* ============================================
+   BREADCRUMB
+   ============================================ */
 .breadcrumb {
   padding: 0.75rem 2rem;
   background: var(--paper);
   border-bottom: 1px solid var(--rule);
   font-size: 0.78rem;
   color: var(--ink-muted);
-  max-width: 100%;
 }
-.breadcrumb a { color: var(--accent); text-decoration: none; }
+.breadcrumb a { color: var(--teal); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .breadcrumb span { margin: 0 0.4rem; }
 
-/* ---- FOOTER ---- */
+/* ============================================
+   FOOTER
+   ============================================ */
 footer {
-  border-top: 1px solid var(--rule);
+  border-top: 2px solid var(--teal);
   padding: 1.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.75rem;
   color: var(--ink-muted);
-  background: var(--paper);
+  background: var(--dark);
+  color: var(--paper);
 }
 .footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { color: var(--ink-muted); text-decoration: none; }
-.footer-links a:hover { color: var(--accent); }
+.footer-links a { color: var(--teal-soft); text-decoration: none; }
+.footer-links a:hover { color: var(--white); }
 
-/* ---- RESPONSIVE ---- */
+/* ============================================
+   UTILITY BADGES
+   ============================================ */
+.badge-complete {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  font-weight: 500;
+}
+.badge-progress {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--maroon);
+  font-weight: 500;
+}
+.badge-ongoing {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+}
+
+/* Status badges on in-progress cards */
+.status-inprogress {
+  font-size: 11px;
+  background: var(--maroon-light);
+  color: var(--maroon);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 700px) {
   nav { padding: 0 1rem; }
   .nav-links a { padding: 0 0.6rem; font-size: 0.7rem; }
