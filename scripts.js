@@ -7,18 +7,24 @@ function openLightbox(src, title, subtitle, isVideo) {
   const overlay = document.getElementById('lightbox');
   const mediaWrap = document.getElementById('lightbox-media-wrap');
   mediaWrap.innerHTML = '';
+
   if (isVideo) {
     const vid = document.createElement('video');
-    vid.src = src; vid.controls = true; vid.autoplay = true;
+    vid.src      = src;
+    vid.controls = true;
+    vid.autoplay = true;
     vid.className = 'lightbox-media';
     mediaWrap.appendChild(vid);
   } else {
     const img = document.createElement('img');
-    img.src = src; img.alt = title;
+    img.src       = src;
+    img.alt       = title;
     img.className = 'lightbox-media';
     mediaWrap.appendChild(img);
   }
-  document.getElementById('lightbox-title').textContent = title;
+
+  /* Use textContent — never innerHTML — for user-visible strings */
+  document.getElementById('lightbox-title').textContent    = title;
   document.getElementById('lightbox-subtitle').textContent = subtitle;
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -43,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (document.getElementById('kanban-board')) loadKanban();
 });
 
-/* ---- LIVE KANBAN — GITHUB PROJECTS ---- */
+/* ---- LIVE KANBAN — VIA VERCEL PROXY ---- */
 const COLUMNS = [
   { key: 'Todo',            emoji: '📥', label: 'To-Do'           },
   { key: 'In Progress',     emoji: '🔄', label: 'In Progress'     },
@@ -53,41 +59,18 @@ const COLUMNS = [
 ];
 
 async function loadKanban() {
-  const TOKEN   = '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';
-  const LOGIN   = 'RaeleneV';
-  const PROJECT = 2;
-
-  const query = `{
-    user(login: "${LOGIN}") {
-      projectV2(number: ${PROJECT}) {
-        items(first: 100) {
-          nodes {
-            fieldValues(first: 10) {
-              nodes {
-                ... on ProjectV2ItemFieldSingleSelectValue {
-                  name
-                  field { ... on ProjectV2SingleSelectField { name } }
-                }
-              }
-            }
-            content {
-              ... on DraftIssue  { title }
-              ... on Issue       { title }
-              ... on PullRequest { title }
-            }
-          }
-        }
-      }
-    }
-  }`;
+  const PROXY_URL = 'https://kanban-proxy-mmuri8d21-rvd1.vercel.app/api/kanban';
 
   try {
-    const res = await fetch('https://api.github.com/graphql', {
+    /* Send an empty POST — the proxy ignores the body and uses its own hardcoded query */
+    const res = await fetch(PROXY_URL, {
       method: 'POST',
-      headers: { 'Authorization': `Bearer ${TOKEN}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query })
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
     });
+
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
     const data = await res.json();
     if (data.errors) throw new Error(data.errors[0].message);
 
@@ -104,6 +87,7 @@ async function loadKanban() {
     });
 
     renderKanban(grouped);
+
   } catch (err) {
     console.warn('Kanban load failed:', err.message);
     document.getElementById('kanban-loading').style.display = 'none';
@@ -112,34 +96,57 @@ async function loadKanban() {
 }
 
 function renderKanban(grouped) {
-  const board = document.getElementById('kanban-board');
-  document.getElementById('kanban-loading').style.display = 'none';
-  board.style.display = 'grid';
+  const board   = document.getElementById('kanban-board');
+  const loading = document.getElementById('kanban-loading');
+  loading.style.display = 'none';
+  board.style.display   = 'grid';
 
-  board.innerHTML = COLUMNS.map(col => {
+  /* Build each column using DOM methods — no raw HTML injection */
+  board.innerHTML = '';
+
+  COLUMNS.forEach(col => {
     const cards = grouped[col.key] || [];
-    const cardHTML = cards.length
-      ? cards.map(t => `
-          <div style="background:var(--white);border:1px solid var(--rule);border-radius:2px;
-               padding:0.6rem 0.75rem;font-size:0.78rem;color:var(--ink-mid);
-               margin-bottom:0.5rem;line-height:1.4;">${escapeHTML(t)}</div>`)
-        .join('')
-      : `<div style="font-size:0.75rem;color:var(--rule);font-style:italic;padding:0.4rem 0;">Empty</div>`;
 
-    return `
-      <div>
-        <div style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;
-             color:var(--ink-mid);padding-bottom:0.75rem;border-bottom:2px solid var(--rule);
-             margin-bottom:0.75rem;">
-          ${col.emoji} ${col.label}
-          <span style="float:right;background:var(--paper-warm);border-radius:10px;
-                padding:1px 7px;font-size:0.65rem;color:var(--ink-muted);">${cards.length}</span>
-        </div>
-        ${cardHTML}
-      </div>`;
-  }).join('');
-}
+    /* Column wrapper */
+    const colEl = document.createElement('div');
 
-function escapeHTML(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    /* Column header */
+    const header = document.createElement('div');
+    header.style.cssText = `font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+      font-weight:500;color:var(--ink-mid);padding-bottom:0.75rem;
+      border-bottom:2px solid var(--rule);margin-bottom:0.75rem;`;
+
+    /* Label — set via textContent, not innerHTML */
+    const labelSpan = document.createElement('span');
+    labelSpan.textContent = `${col.emoji} ${col.label}`;
+
+    /* Count badge */
+    const badge = document.createElement('span');
+    badge.style.cssText = `float:right;background:var(--paper-warm);border-radius:10px;
+      padding:1px 7px;font-size:0.65rem;color:var(--ink-muted);`;
+    badge.textContent = cards.length;
+
+    header.appendChild(labelSpan);
+    header.appendChild(badge);
+    colEl.appendChild(header);
+
+    if (cards.length === 0) {
+      const empty = document.createElement('div');
+      empty.style.cssText = 'font-size:0.75rem;color:var(--rule);font-style:italic;padding:0.4rem 0;';
+      empty.textContent = 'Empty';
+      colEl.appendChild(empty);
+    } else {
+      cards.forEach(title => {
+        const card = document.createElement('div');
+        card.style.cssText = `background:var(--white);border:1px solid var(--rule);
+          border-radius:2px;padding:0.6rem 0.75rem;font-size:0.78rem;
+          color:var(--ink-mid);margin-bottom:0.5rem;line-height:1.4;`;
+        /* textContent is XSS-safe — no escaping function needed */
+        card.textContent = title;
+        colEl.appendChild(card);
+      });
+    }
+
+    board.appendChild(colEl);
+  });
 }

@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Raelene Valeska Dookkoo — Portfolio</title>
+
+  <!-- Security headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://kanban-proxy-mmuri8d21-rvd1.vercel.app; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Raelene Valeska Dookkoo — Portfolio" />
+  <meta property="og:description" content="Six years of multidisciplinary academic work spanning Multimedia, Computer Science and Informatics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://RaeleneV.github.io" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -26,7 +42,7 @@
         </div>
       </li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank">Board</a></li>
+      <li><a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" rel="noopener noreferrer">Board</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="CV_Raelene_Valeska_Dookkoo.pdf" download style="color:var(--accent);font-weight:500;border:1px solid var(--accent);padding:0 0.9rem;border-radius:2px;height:32px;display:flex;align-items:center;margin-left:0.5rem;">↓ CV</a></li>
     </ul>
@@ -43,7 +59,7 @@
     </p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;">
       <a href="year1.html" class="btn btn-primary">View portfolio</a>
-      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" class="btn btn-secondary">See what I'm working on ↗</a>
+      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" class="btn btn-secondary" rel="noopener noreferrer">See what I'm working on ↗</a>
       <a href="CV_Raelene_Valeska_Dookkoo.pdf" download class="btn btn-secondary">↓ Download CV</a>
     </div>
     <div style="display:flex;gap:3rem;margin-top:4rem;padding-top:2rem;border-top:1px solid var(--rule);flex-wrap:wrap;">
@@ -398,13 +414,13 @@
       <!-- Error state (hidden by default) -->
       <div id="kanban-error" style="display:none;background:#fff5f5;border-left:3px solid #e53e3e;padding:0.9rem 1.1rem;font-size:0.85rem;color:#c53030;border-radius:0 2px 2px 0;">
         Could not load board data right now.
-        <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" style="color:var(--accent);">View directly on GitHub →</a>
+        <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" style="color:var(--accent);" rel="noopener noreferrer">View directly on GitHub →</a>
       </div>
 
       <!-- Board — populated dynamically by scripts.js -->
       <div id="kanban-board" style="display:none;grid-template-columns:repeat(5,1fr);gap:1rem;"></div>
 
-      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" style="display:inline-block;margin-top:1.5rem;font-size:0.82rem;color:var(--accent);text-decoration:none;font-weight:500;letter-spacing:0.04em;">View full board on GitHub →</a>
+      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" style="display:inline-block;margin-top:1.5rem;font-size:0.82rem;color:var(--accent);text-decoration:none;font-weight:500;letter-spacing:0.04em;" rel="noopener noreferrer">View full board on GitHub →</a>
     </div>
   </section>
 
@@ -422,7 +438,7 @@
           <a href="CV_Raelene_Valeska_Dookkoo.pdf" download class="btn btn-primary" style="display:inline-block;">↓ Download CV</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:1rem;">
-          <a href="https://linkedin.com/in/raelene-dookkoo" target="_blank" style="display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--rule);background:var(--white);border-radius:2px;">
+          <a href="https://linkedin.com/in/raelene-dookkoo" target="_blank" style="display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--rule);background:var(--white);border-radius:2px;" rel="noopener noreferrer">
             <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:500;color:var(--accent);flex-shrink:0;">in</div>
             <div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);font-weight:500;">LinkedIn</div><div style="font-size:0.88rem;color:var(--ink);margin-top:2px;">linkedin.com/in/raelene-dookkoo</div></div>
           </a>
@@ -430,7 +446,7 @@
             <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:500;color:var(--accent);flex-shrink:0;">@</div>
             <div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);font-weight:500;">Email</div><div style="font-size:0.88rem;color:var(--ink);margin-top:2px;">raelenevdookkoo@gmail.com</div></div>
           </a>
-          <a href="https://github.com/RaeleneV" target="_blank" style="display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--rule);background:var(--white);border-radius:2px;">
+          <a href="https://github.com/RaeleneV" target="_blank" style="display:flex;align-items:center;gap:1rem;text-decoration:none;padding:1rem 1.25rem;border:1px solid var(--rule);background:var(--white);border-radius:2px;" rel="noopener noreferrer">
             <div style="width:36px;height:36px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:500;color:var(--accent);flex-shrink:0;">gh</div>
             <div><div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);font-weight:500;">GitHub</div><div style="font-size:0.88rem;color:var(--ink);margin-top:2px;">github.com/RaeleneV</div></div>
           </a>
@@ -447,9 +463,9 @@
   <footer>
     <span>© 2026 Raelene Valeska Dookkoo</span>
     <div class="footer-links">
-      <a href="https://linkedin.com/in/raelene-dookkoo" target="_blank">LinkedIn</a>
-      <a href="https://github.com/RaeleneV" target="_blank">GitHub</a>
-      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank">Board</a>
+      <a href="https://linkedin.com/in/raelene-dookkoo" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://github.com/RaeleneV" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/users/RaeleneV/projects/2/views/1" target="_blank" rel="noopener noreferrer">Board</a>
       <a href="CV_Raelene_Valeska_Dookkoo.pdf" download>Download CV</a>
       <a href="mailto:raelenevdookkoo@gmail.com">Email</a>
     </div>
