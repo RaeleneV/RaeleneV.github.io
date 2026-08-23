@@ -59,7 +59,7 @@ const COLUMNS = [
 ];
 
 async function loadKanban() {
-  const PROXY_URL = 'https://kanban-proxy-mmuri8d21-rvd1.vercel.app/api/kanban';
+  const PROXY_URL = 'https://kanban-proxy-k2g3dmkef-rvd1.vercel.app/api/kanban';
 
   try {
     /* Send an empty POST — the proxy ignores the body and uses its own hardcoded query */
