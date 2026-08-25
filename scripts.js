@@ -113,8 +113,8 @@ function renderKanban(grouped) {
     /* Column header */
     const header = document.createElement('div');
     header.style.cssText = `font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
-      font-weight:500;color:var(--teal-dark);padding-bottom:0.75rem;
-      border-bottom:2px solid var(--gold);margin-bottom:0.75rem;`;
+      font-weight:500;color:var(--navy);padding-bottom:0.75rem;
+      border-bottom:2px solid var(--crimson);margin-bottom:0.75rem;`;
 
     /* Label — set via textContent, not innerHTML */
     const labelSpan = document.createElement('span');
@@ -132,7 +132,7 @@ function renderKanban(grouped) {
 
     if (cards.length === 0) {
       const empty = document.createElement('div');
-      empty.style.cssText = 'font-size:0.75rem;color:var(--teal-soft);font-style:italic;padding:0.4rem 0;';
+      empty.style.cssText = 'font-size:0.75rem;color:var(--crimson-soft);font-style:italic;padding:0.4rem 0;';
       empty.textContent = 'Empty';
       colEl.appendChild(empty);
     } else {
