@@ -50,6 +50,19 @@
 
 html { scroll-behavior: smooth; }
 
+/* ============================================
+   OVERFLOW PREVENTION — stops horizontal scroll
+   ============================================ */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* Nav name — show full on desktop, short on mobile */
+.nav-name-short { display: none; }
+.nav-name-full  { display: inline; }
+
+
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--paper);
@@ -632,37 +645,55 @@ footer {
    ============================================ */
 @media (max-width: 768px) {
   /* Nav */
-  nav { padding: 0 0.75rem; gap: 0.25rem; }
+  nav {
+    padding: 0 0.75rem;
+    gap: 0.25rem;
+    overflow: hidden;
+  }
   .nav-name { font-size: 0.82rem; }
-  .nav-links a { padding: 0 0.35rem; font-size: 0.6rem; letter-spacing: 0.04em; }
+  .nav-name-full  { display: none; }
+  .nav-name-short { display: inline; }
+  .nav-links a { padding: 0 0.3rem; font-size: 0.58rem; letter-spacing: 0.03em; }
   .nav-cv {
     padding: 0 0.5rem !important;
-    font-size: 0.6rem !important;
+    font-size: 0.58rem !important;
     height: 24px !important;
     margin-left: 0.2rem !important;
+    letter-spacing: 0.03em !important;
   }
 
   /* Sections */
-  section { padding: 2.5rem 1.25rem; }
-  .year-banner { padding: 2.5rem 1.25rem; }
-  .breadcrumb { padding: 0.75rem 1.25rem; }
+  section { padding: 2.5rem 1rem; }
+  .year-banner { padding: 2.5rem 1rem; }
+  .breadcrumb { padding: 0.75rem 1rem; }
 
   /* Kanban — 2 columns */
   #kanban-board {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 
-  /* Contact section fix */
+  /* Contact section — stack on mobile */
   .contact-grid {
     grid-template-columns: 1fr !important;
-    gap: 2rem !important;
+    gap: 1.5rem !important;
   }
-  .contact-intro {
+  .contact-intro p {
     font-size: 0.88rem !important;
+  }
+  .contact-links {
+    width: 100% !important;
+  }
+  .contact-link {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .contact-link-value {
+    font-size: 0.78rem !important;
+    word-break: break-all !important;
   }
 
   /* Grids */
-  .about-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .about-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
   .exp-item   { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
   .projects-grid { grid-template-columns: 1fr; }
 
@@ -671,12 +702,19 @@ footer {
 
   /* Footer */
   footer {
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
     flex-direction: column;
     gap: 0.75rem;
     text-align: center;
+    position: relative;
+    width: 100%;
+    margin-top: 0;
   }
-  .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1rem;
+  }
 
   /* Section titles */
   .section-title { margin-bottom: 1.75rem; }
@@ -695,4 +733,63 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* ============================================
+   EXTRA MOBILE FIXES
+   ============================================ */
+
+/* Prevent any element from causing horizontal scroll */
+* { max-width: 100%; }
+img, video { max-width: 100%; height: auto; }
+
+/* Hero — prevent text overflow on small screens */
+.hero-title { word-break: break-word; }
+
+/* Year cards grid — single column below 480px */
+@media (max-width: 480px) {
+  /* Single column kanban */
+  #kanban-board { grid-template-columns: 1fr !important; }
+
+  /* Year cards */
+  .year-cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Nav — hide less important items */
+  .nav-links li:nth-child(n+5):not(:last-child) { display: none; }
+
+  /* Hero padding */
+  .hero-section {
+    padding: 3rem 1rem 2rem !important;
+  }
+
+  /* Section titles smaller */
+  .section-title {
+    font-size: 1.4rem !important;
+  }
+
+  /* Contact links — tighter */
+  .contact-link {
+    padding: 0.75rem 0.9rem !important;
+  }
+
+  /* Buttons stack on tiny screens */
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
+
+/* Kanban board — never overflow horizontally */
+#kanban-board {
+  overflow-x: hidden;
+}
+
+/* Contact section always stacks below 640px */
+@media (max-width: 640px) {
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
 }
