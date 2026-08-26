@@ -162,23 +162,24 @@ nav {
 
 /* CV button */
 .nav-cv {
-  color: var(--crimson-soft) !important;
-  font-weight: 500 !important;
-  border: 1px solid var(--crimson-soft) !important;
+  color: var(--white) !important;
+  font-weight: 600 !important;
+  background: var(--crimson) !important;
+  border: 1px solid var(--crimson) !important;
   border-radius: 2px !important;
-  padding: 0 0.8rem !important;
+  padding: 0 0.9rem !important;
   height: 28px !important;
   display: flex !important;
   align-items: center !important;
   margin-left: 0.4rem !important;
   font-size: 0.68rem !important;
   letter-spacing: 0.06em !important;
-  transition: background 0.2s, color 0.2s !important;
+  transition: background 0.2s, border-color 0.2s !important;
   white-space: nowrap !important;
 }
 .nav-cv:hover {
-  background: var(--crimson-soft) !important;
-  color: var(--navy) !important;
+  background: var(--crimson-mid) !important;
+  border-color: var(--crimson-mid) !important;
 }
 
 /* ============================================
@@ -545,43 +546,47 @@ section { padding: 4rem 2rem; }
 .contact-link {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   text-decoration: none;
-  padding: 0.9rem 1.1rem;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  border-radius: 3px;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  min-width: 0; /* prevent overflow inside grid */
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(13,27,46,0.82);
+  border-radius: 4px;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  min-width: 0;
+  backdrop-filter: blur(4px);
 }
 .contact-link:hover {
-  border-color: var(--crimson-soft);
-  box-shadow: 0 2px 8px rgba(139,14,42,0.1);
+  background: rgba(139,14,42,0.75);
+  border-color: rgba(255,255,255,0.2);
+  transform: translateY(-2px);
 }
 .contact-link-icon {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--crimson);
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--white);
   flex-shrink: 0;
 }
 .contact-link-label {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink-muted);
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
   font-weight: 500;
+  margin-bottom: 0.2rem;
 }
 .contact-link-value {
-  font-size: 0.82rem;
-  color: var(--navy);
-  margin-top: 2px;
+  font-size: 0.88rem;
+  color: var(--white);
+  font-weight: 400;
   word-break: break-word;
   overflow-wrap: break-word;
 }
@@ -608,16 +613,16 @@ footer {
   display: flex;
   justify-content: space-between; align-items: center;
   background: var(--navy-deep);
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.85);
   font-size: 0.75rem;
 }
 .footer-links { display: flex; gap: 1.5rem; }
 .footer-links a {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.7);
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-links a:hover { color: rgba(255,255,255,0.75); }
+.footer-links a:hover { color: var(--crimson-soft); }
 
 /* ============================================
    YEAR NAV
@@ -786,4 +791,17 @@ img, video, iframe { max-width: 100%; height: auto; }
   .contact-cards {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* Contact section — dark background so navy cards read well */
+#contact {
+  background: var(--navy-mid);
+}
+#contact .section-label { color: var(--crimson-soft); }
+#contact .section-label::before { background: var(--crimson-soft); }
+#contact .section-title { color: var(--white); }
+#contact p { color: rgba(255,255,255,0.7) !important; }
+#contact .btn-primary {
+  background: var(--crimson);
+  color: var(--white);
 }
