@@ -805,3 +805,14 @@ img, video, iframe { max-width: 100%; height: auto; }
   background: var(--crimson);
   color: var(--white);
 }
+
+/* About section grid */
+.about-aside { min-width: 0; }
+.about-text  { min-width: 0; }
+
+@media (max-width: 768px) {
+  .about-grid,
+  [style*="grid-template-columns:1fr 2fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
